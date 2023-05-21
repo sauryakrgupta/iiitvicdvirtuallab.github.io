@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.nav {
+  background-color: rgb(141, 83, 83);
+  padding: 20px;
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.nav a:hover {
+  background-color: rgb(141, 83, 83);
+  color: #000000;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    background-image: url("./image/kmap.jpg");
+    background-size: cover;
+}
+
+
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.flexitem {
+    margin: 10px;
+}
+
+.expression {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    font-size: 18px;
+}
+
+.button {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    width: 80%;
+    max-width: 400px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0062cc;
+}
+
+.table {
+    margin-top: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 50%;
+    max-width: 600px;
+    padding: 20px;
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .expression {
+        width: 80%;
+    }
+
+    .input {
+        width: 100%;
+        max-width: none;
+    }
+
+    .button {
+        width: 100%;
+        max-width: none;
+    }
+
+    .table {
+        width: 80%;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="nav">
+        <ul>
+          <li><a href="/home.html">Home</a></li>
+          <li><a href="#">Projects</a></li>
+        </ul>
+        
+      </div>
+    <div class="flexbox">
+        <div class="flexitem expression" id="expressionDiv">
+            <div class="flexitem">
+                <h1> Minterm Expression Solver</h1>
+            </div>
+            <form onsubmit="return false;">
+                <input id="inputValue" type="text" name="text" class="input" placeholder="1,2,3,4">
+                <input id="inputLetters" type="text" name="text" class="input" placeholder="A,B,C,D">
+                <button type="submit" class="button" value="submit" onclick="validate(false)">Evaluate Minterm</button>
+                <button type="submit" class="button" value="submit" onclick="validate(true)">Evaluate Maxterm</button>
+            </form>
+        </div>
+        <div class="table" id="tablediv"></div>
+    </div>
+    <script src="kmap.js"></script>
+</body>
+</html>

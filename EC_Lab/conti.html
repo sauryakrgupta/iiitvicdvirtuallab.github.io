@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Continuity Equation and Conservation of Energy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <style>
+        /* Apply a sans-serif font family to the whole page */
+        body {
+            font-family: sans-serif;
+        }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+        /* Style the header */
+        header {
+            background-color: #a2b200;
+            color: white;
+            padding: 1em;
+        }
+
+        /* Center the header text */
+        h1 {
+            text-align: center;
+        }
+
+        /* Style the main content */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+        }
+
+        /* Style the section headings */
+        h2 {
+            font-size: 1.2em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        /* Style the form labels and input fields */
+        label {
+            display: block;
+            margin-top: 1em;
+        }
+
+        input {
+            margin-left: 1em;
+            width: 80%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style the form buttons */
+        button {
+            margin-top: 1em;
+            padding: 0.5em;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Style the form button hover effect */
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Style the result text */
+        p[id$="-result"] {
+            margin-top: 1em;
+            padding: 0.5em;
+            background-color: #eee;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Continuity Equation and Conservation of Energy</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Electromagnetic</h2>
+            <p>Enter the values for the continuity equation in the electromagnetic domain:</p>
+            <form id="electromagnetic-form">
+                <label for="rho">Charge Density Equation (ρ):</label>
+                <input type="text" id="rho" name="rho" required>
+                <br>
+                <label for="j">Current Density vector (j):</label>
+                <input type="text" id="j" name="j" required>
+                <br>
+                <label for="x">x</label>
+                <input type="number" id="x" name="x" required>
+                <br>
+                <label for="y">y</label>
+                <input type="number" id="y" name="y" required>
+                <br>
+                <label for="z">z</label>
+                <input type="number" id="z" name="z" required>
+                <br>
+                <label for="t">t</label>
+                <input type="number" id="t" name="t" required>
+                <br>
+                <button type="button" onclick="verifyElectromagnetic()">Verify Continuity Equation</button>
+            </form>
+            <p id="electromagnetic-result"></p>
+        </section>
+        <section>
+            <h2>Computer Vision</h2>
+            <p>Enter the values for the continuity equation in the computer vision domain:</p>
+            <form id="computer-vision-form">
+                <label for="rho_c">Image Intensity (I<sub>c</sub>):</label>
+                <input type="text" id="c_rho" name="c_rho" required>
+                <br>
+                <label for="v_c">Velocity Vctor(v<sub>c</sub>):</label>
+                <input type="text" id="c_v" name="c_v" required>
+                <br>
+                <label for="x">x</label>
+                <input type="number" id="c_x" name="x" required>
+                <br>
+                <label for="y">y</label>
+                <input type="number" id="c_y" name="y" required>
+                <br>
+                <label for="t">t</label>
+                <input type="number" id="c_t" name="t" required>
+                <br>
+                <button type="button" onclick="verifyComputerVision()">Verify Continuity Equation</button>
+            </form>
+            <p id="computer-vision-result"></p>
+        </section>
+        <section>
+            <h2>Fluid Dynamics</h2>
+            <p>Enter the values for the continuity equation in the fluid dynamics domain:</p>
+            <form id="fluid-dynamics-form">
+                <label for="rho_f">Fluid Density (ρ<sub>f</sub>):</label>
+                <input type="text" id="rho_f" name="rho_f" required>
+                <br>
+                <label for="v">Velocity (v):</label>
+                <input type="number" id="v" name="v" required>
+                <br>
+                <label for="A">Cross-sectional Area (A):</label>
+                <input type="number" id="A" name="A" required>
+                <br>
+                <button type="button" onclick="verifyFluidDynamics()">Verify Continuity Equation</button>
+            </form>
+            <p id="fluid-dynamics-result"></p>
+        </section>
+        <section>
+            <h2>Conservation of Energy</h2>
+            <p>Enter the values for the conservation of energy:</p>
+            <form id="energy-form">
+                <label for="e_rho">Energy Density:</label>
+                <input type="text" id="e_rho" name="e_rho" required>
+                <label for="e_f">Energy Flux:</label>
+                <input type="text" id="e_f" name="e_f" required>
+                <br>
+                <label for="e_x">x</label>
+                <input type="number" id="e_x" name="e_x" required>
+                <br>
+                <label for="e_y">y</label>
+                <input type="number" id="e_y" name="e_y" required>
+                <br>
+                <label for="e_z">z</label>
+                <input type="number" id="e_z" name="e_z" required>
+                <br>
+                <label for="e_t">t</label>
+                <input type="number" id="e_t" name="e_t" required>
+                <br>
+                <button type="button" onclick="verifyEnergy()">Verify Conservation of Energy</button>
+            </form>
+            <p id="energy-result"></p>
+        </section>
+    </main>
+    <script>
+
+        // Add your JavaScript code here
+        function verifyElectromagnetic() {
+            // const h = math.parse('x^2 + x');
+            const x = math.parse('x');
+            const y = math.parse('y');
+            const z = math.parse('z');
+            const t = math.parse('t');
+            // const dh = math.derivative(h, x);
+            // console.log(dh.toString());
+            // Retrieve values from form
+            const rho = document.getElementById("rho").value;
+            const j = document.getElementById("j").value.split(' ');
+            const jx=j[0];
+            const jy=j[1];
+            const jz=j[2];
+            // console.log(rho,j,jx,jy,jz);
+            const x_val = document.getElementById("x").value;
+            const y_val = document.getElementById("y").value;
+            const z_val = document.getElementById("z").value;
+            const t_val = document.getElementById("t").value;
+
+            const rho_p=math.parse(rho);
+            const jx_p=math.parse(jx);
+            const jy_p=math.parse(jy);
+            const jz_p=math.parse(jz);
+            // console.log(rho_p.toString(),j,jx_p.toString(),jy_p.toString(),jz_p.toString());
+            const djx_p=math.derivative(jx_p, x);
+            const djy_p=math.derivative(jy_p, y);
+            const djz_p=math.derivative(jz_p, z);
+            let lhs=djx_p.toString()+ " + " + djy_p.toString()+ " + " + djz_p.toString();
+            lhs=math.simplify(lhs);
+            
+            // console.log(lhs.toString());
+            const rhs=math.derivative(rho_p, t);
+            let res=math.simplify(`${rhs.toString()} + ${lhs.toString()}`);
+            console.log(res.toString());
+
+            res=math.evaluate(res.toString(),{x:x_val,y:y_val,z:z_val,t:t_val});
+            res=res.toString();
+
+            if(res=="0"){
+                document.getElementById("electromagnetic-result").innerHTML = "Continuity equation verified.";
+            } else {
+                document.getElementById("electromagnetic-result").innerHTML = "Continuity equation not verified.";
+            }
+
+            // if (rho * j == 0) {
+            // }
+        }
+
+        function verifyFluidDynamics() {
+            // Retrieve values from form
+            
+            const rho_f = document.getElementById("rho_f").value;
+            const v = document.getElementById("v").value;
+            const A = document.getElementById("A").value;
+
+            // Verify continuity equation
+            if (rho_f * v * A == 0) {
+                document.getElementById("fluid-dynamics-result").innerHTML = "Continuity equation verified.";
+            } else {
+                document.getElementById("fluid-dynamics-result").innerHTML = "Continuity equation not verified.";
+            }
+        }
+        
+        function verifyComputerVision() {
+            const x = math.parse('x');
+            const y = math.parse('y');
+            const t = math.parse('t');
+
+            const rho = document.getElementById("c_rho").value;
+            const v = document.getElementById("c_v").value.split(' ');
+            const vx=v[0];
+            const vy=v[1];
+            const vz=v[2];
+            // Retrieve values from form
+
+            const x_val = document.getElementById("c_x").value;
+            const y_val = document.getElementById("c_y").value;
+            const t_val = document.getElementById("c_t").value;
+
+            const rho_p=math.parse(rho);
+            const vx_p=math.parse(vx);
+            const vy_p=math.parse(vy);
+            
+            const drhox_p=math.derivative(rho_p, x);
+            const drhoy_p=math.derivative(rho_p, y);
+            const drhot_p=math.derivative(rho_p, t);
+
+            const lhsx=math.simplify(`${vx.toString()} * ${drhox_p.toString()}`);
+            const lhsy=math.simplify(`${vy.toString()} * ${drhoy_p.toString()}`);
+
+            let res=math.simplify(`${lhsx.toString()} + ${lhsy.toString()} + ${drhot_p.toString()}`);
+            res=res.toString();
+            // Verify continuity equation
+            if (res == 0) {
+                document.getElementById("computer-vision-result").innerHTML = "Continuity equation verified.";
+            } else {
+                document.getElementById("computer-vision-result").innerHTML = "Continuity equation not verified.";
+            }
+        }
+
+        function verifyEnergy() {
+            // Retrieve values from form
+            const x = math.parse('x');
+            const y = math.parse('y');
+            const z = math.parse('z');
+            const t = math.parse('t');
+            // const dh = math.derivative(h, x);
+            // console.log(dh.toString());
+            // Retrieve values from form
+            const e_rho = document.getElementById("e_rho").value;
+            const e_f = document.getElementById("e_f").value.split(' ');
+            const e_fx=e_f[0];
+            const e_fy=e_f[1];
+            const e_fz=e_f[2];
+            console.log(e_rho,e_f,e_fx,e_fy,e_fz);
+            const x_val = document.getElementById("e_x").value;
+            const y_val = document.getElementById("e_y").value;
+            const z_val = document.getElementById("e_z").value;
+            const t_val = document.getElementById("e_t").value;
+
+            const e_rho_p=math.parse(e_rho);
+            const e_fx_p=math.parse(e_fx);
+            const e_fy_p=math.parse(e_fy);
+            const e_fz_p=math.parse(e_fz);
+            // console.log(e_rho_p.toString(),e_f,e_fx_p.toString(),e_fy_p.toString(),e_fz_p.toString());
+            const de_fx_p=math.derivative(e_fx_p, x);
+            const de_fy_p=math.derivative(e_fy_p, y);
+            const de_fz_p=math.derivative(e_fz_p, z);
+            let lhs=de_fx_p.toString()+ " + " + de_fy_p.toString()+ " + " + de_fz_p.toString();
+            lhs=math.simplify(lhs);
+            
+            // console.log(lhs.toString());
+            const rhs=math.derivative(e_rho_p, t);
+            let res=math.simplify(`${rhs.toString()} + ${lhs.toString()}`);
+            console.log(res.toString());
+
+            res=math.evaluate(res.toString(),{x:x_val,y:y_val,z:z_val,t:t_val});
+            res=res.toString();
+
+            if(res=="0"){
+                document.getElementById("energy-result").innerHTML = "Continuity equation verified.";
+            } else {
+                document.getElementById("energy-result").innerHTML = "Continuity equation not verified.";
+            }
+        }
+    </script>
+</body>
+
+</html>

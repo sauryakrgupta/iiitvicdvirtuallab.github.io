@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number System Converter</title>
+    <link rel="stylesheet" href="./convertor.css" />
+    <!-- <link rel="stylesheet" href="./image/1.webp"> -->
+  </head>
+  <body>
+
+    <div id="converterMain">
+    
+      <div class="nav">
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="#">Projects</a></li>
+      </ul>
+      
+    </div>
+
+    <div class="div">
+      <h1>Number System Converter</h1>
+      <label>Enter a number:</label>
+      <input type="text" id="numberInput" />
+      <br />
+      <label>Input type:</label>
+      <select id="inputType">
+        <option value="decimal">Decimal</option>
+        <option value="binary">Binary</option>
+        <option value="octal">Octal</option>
+        <option value="hexadecimal">Hexadecimal</option>
+      </select>
+      <br />
+      <label>Convert to:</label>
+      <select id="conversionType">
+        <option value="binary">Binary</option>
+        <option value="octal">Octal</option>
+        <option value="decimal" selected>Decimal</option>
+        <option value="hexadecimal">Hexadecimal</option>
+      </select>
+      <br />
+      <button onclick="convert()">Convert</button>
+      <p id="result"></p>
+    </div>
+</div>
+    <script>
+      function convert() {
+        var input = document.getElementById("numberInput").value;
+        var inputType = document.getElementById("inputType").value;
+        var conversionType = document.getElementById("conversionType").value;
+        var result = "";
+
+        switch (inputType) {
+          case "decimal":
+            input = Number(input);
+            break;
+          case "binary":
+            input = parseInt(input, 2);
+            break;
+          case "octal":
+            input = parseInt(input, 8);
+            break;
+          case "hexadecimal":
+            input = parseInt(input, 16);
+            break;
+        }
+
+        switch (conversionType) {
+          case "binary":
+            result = input.toString(2);
+            break;
+          case "octal":
+            result = input.toString(8);
+            break;
+          case "decimal":
+            result = input;
+            break;
+          case "hexadecimal":
+            result = input.toString(16);
+            break;
+        }
+
+        document.getElementById("result").innerHTML = "Result: " + result;
+      }
+    </script>
+  </body>
+</html>

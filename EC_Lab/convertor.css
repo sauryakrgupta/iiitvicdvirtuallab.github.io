@@ -1,0 +1,84 @@
+body {
+  background-image: url("./images/binary.webp");
+  text-align: center;
+  margin-top: 50px;
+  background: #ececec;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+#converterMain{
+  background-image: url("./image/binary.webp");
+  height: 100vh;
+  
+}
+h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  background-color: rgb(227, 253, 161);
+}
+
+input[type="number"] {
+  width: 200px;
+  height: 40px;
+  font-size: 24px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #585252;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: rgb(227, 253, 161);
+  color: rgb(0, 0, 0);
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 24px;
+  margin-bottom: 10px;
+  background: #b6b0b0;
+}
+
+.div {
+  background: #4ef4cd;
+  width: 50vw;
+  height: 30vh;
+  margin-left: 25vw;
+  margin-top: 10vw;
+}
+
+.nav {
+  background-color: rgb(141, 83, 83);
+  padding: 20px;
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.nav a:hover {
+  background-color: rgb(141, 83, 83);
+  color: #000000;
+}

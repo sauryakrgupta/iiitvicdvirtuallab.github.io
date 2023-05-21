@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EM Wave Power Calculator</title>
+    <style>
+        body{
+            background-image: url("./image/power.webp");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            background: #e4ddbf;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input[type="number"] {
+            padding: 5px 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 2px 5px rgba(209, 24, 24, 0.3);
+            font-size: 18px;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #265696;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #38b156;
+        }
+
+        p#output {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            /* background-colo: #3f9455; */
+            /* margin: 15px; */
+            padding: 15px;
+            shape-margin: 50px
+        }
+
+        /* Reset default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        /* Style the navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style the navigation links */
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        p {
+            font-size: 24px;
+            margin-bottom: 10px;
+            background: #b6b0b0;
+        }
+
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Style the main content */
+        main {
+            padding: 50px;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <header>
+        <nav>
+            <ul>
+                <li><a href="converter.html">Number System</a></li>
+                <li><a href="ref.html">EM wave</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <main>
+        <div class="container">
+            <h1>EM Wave Power Calculator</h1>
+            <form>
+                <label for="incident-power">Incident Power (Watts):</label>
+                <input type="number" id="incident-power" placeholder="Enter incident power" required>
+                <label for="reflection-coefficient">Reflection Coefficient:</label>
+                <input type="number" step="0.01" id="reflection-coefficient" placeholder="Enter reflection coefficient"
+                    required>
+                <label for="transmission-coefficient">Transmission Coefficient:</label>
+                <input type="number" step="0.01" id="transmission-coefficient"
+                    placeholder="Enter transmission coefficient" required>
+                <label for="diffraction-coefficient">Diffraction Coefficient:</label>
+                <input type="number" step="0.01" id="diffraction-coefficient"
+                    placeholder="Enter diffraction coefficient" required>
+                <button type="submit">Calculate</button>
+            </form>
+            <p id="output"></p>
+        </div>
+        <script>
+            const form = document.querySelector('form');
+            const output = document.querySelector('#output');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const incidentPower = Number(document.querySelector('#incident-power').value);
+                const reflectionCoefficient = Number(document.querySelector('#reflection-coefficient').value);
+                const transmissionCoefficient = Number(document.querySelector('#transmission-coefficient')
+                    .value);
+                const diffractionCoefficient = Number(document.querySelector('#diffraction-coefficient').value);
+
+                const reflectedPower = Math.pow(reflectionCoefficient, 2) * incidentPower;
+                const transmittedPower = Math.pow(transmissionCoefficient, 2) * incidentPower;
+                const diffractedPower = Math.pow(diffractionCoefficient, 2) * incidentPower;
+
+                const totalPower = reflectedPower + transmittedPower + diffractedPower;
+
+                output.textContent = `Total Power Received: ${totalPower} Watts`;
+            });
+        </script>
+</body>
+
+</html>
+
+</main>

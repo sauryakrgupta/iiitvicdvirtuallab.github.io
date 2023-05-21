@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overflow-x: hidden;
+        background-image: url("./image/flipflop.jpg");
+        background: cover;
+        background-repeat: no-repeat;
+      }
+
+      .nav {
+        background-color: rgb(141, 83, 83);
+        padding: 20px;
+      }
+
+      .nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav li {
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      .nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+      }
+
+      .nav a:hover {
+        background-color: rgb(141, 83, 83);
+        color: #000000;
+      }
+
+      #or {
+        margin-top: 20px;
+        align-self: center;
+      }
+
+      .oti {
+        margin-left: 8px;
+        outline: none;
+        font-size: 15px;
+        border: none;
+        padding: 4px 8px;
+        border-radius: 5px;
+      }
+
+      #inps {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 20px;
+      }
+
+      #swit {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .labetxt {
+        display: flex;
+        align-items: center;
+      }
+
+      .btn {
+        padding: 4px 8px;
+        background: white;
+        outline: none;
+        border: 1px solid black;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      #labels {
+        display: flex;
+        flex-direction: column;
+        margin-top: 32px;
+        padding: 16px 0;
+        background: aliceblue;
+        border-radius: 8px;
+      }
+
+      .hor {
+        height: 80px;
+      }
+
+      .vert {
+        width: 2px;
+        background: #2196f3;
+        height: 80px;
+      }
+
+      .graphinp {
+        display: flex;
+        bottom: 0;
+        position: absolute;
+      }
+
+      .grphtitl {
+        right: 10px;
+        top: 10px;
+        position: absolute;
+        font-size: 22px;
+      }
+
+      .graph {
+        height: 20%;
+        background-color: aliceblue;
+        width: 100%;
+        margin-top: 60px;
+        border-left: 2px solid black;
+        border-bottom: 2px solid black;
+        position: relative;
+      }
+
+      #cont {
+        width: 60%;
+        height: 100%;
+      }
+
+      #body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /*  */
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        margin-left: 9px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="#">Projects</a></li>
+      </ul>
+    </div>
+
+    <div id="body">
+      <div id="cont">
+        <div class="graph">
+          <div class="grphtitl">CLK</div>
+          <div class="graphinp" id="clk"></div>
+        </div>
+        <div class="graph">
+          <div class="grphtitl">Q</div>
+          <div class="graphinp" id="q"></div>
+        </div>
+        <div id="labels">
+          <div id="swit">
+            <div class="labetxt">
+              CLK
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="labetxt">
+              J
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="labetxt">
+              K
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <button onclick="generate()" class="labetxt btn">GENERATE</button>
+            <button onclick="reset()" class="labetxt btn">RESET</button>
+          </div>
+          <div id="or">OR</div>
+          <div id="inps">
+            <div id="inptxt">
+              CLK
+              <input type="text" id="inp_clk" class="oti" />
+            </div>
+            <div id="inptxt">
+              J
+              <input type="text" id="inp_j" class="oti" />
+            </div>
+            <div id="inptxt">
+              K
+              <input type="text" id="inp_k" class="oti" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="jk.js"></script>
+  </body>
+</html>
